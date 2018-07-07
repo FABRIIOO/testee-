@@ -1,12 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>teste</name>
+    <name>teste x teste</name>
     <description>
-        A blank PhoneGap app.
+     teste fabricio
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
         PhoneGap Team
     </author>
+    <access origin="htttp://plistone.requestwf.com.br/codigo_php/busca_instrumento.php" subdomains="true" />
+	<access origin="http://plistone.requestwf.com.br/codigo_php/login_app.php" subdomains="true" />
     <content src="index.html" />
     <access origin="*" />
 </widget>
