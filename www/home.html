@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <link rel="stylesheet" href="estilo.css" type="text/css"/>
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
+        <script src="funcionalidade.js"></script>
+
+     <style>
+
+     	/*icone da engranagem*/
+		.gear{
+			font-size: 25px;
+		}
+
+		/*espaço select marca*/
+		.espaco{
+			margin-top: 10px;
+		}
+
+
+
+    /*estilo do calculo */
+    #tabela{
+      margin-top: 20px;
+    }
+  .space_input{
+    margin-top: 10px;
+  }
+
+  /*titulo de inicio do calculo*/
+  .titulo_calculo{
+    font-size: 180%;
+    color: dimgrey;
+    text-align: center;
+    margin-top: 25px;
+  }
+
+  /*largura do cartao*/
+  .uk-card{
+    width: 95%;
+  }
+
+  /*titulo do cartao*/
+  .uk-card-title{
+    margin-top: -10px;
+    color: dimgrey;
+  }
+
+  /*icone de temperatura*/
+  .fa-thermometer-three-quarters{
+    font-size: 60px;
+  }
+
+  /*icone de pressao*/
+  .fa-tachometer{
+    font-size: 60px;
+  }
+
+  /*icone vazao*/
+  .fa-random{
+    font-size: 60px;
+  }
+  /*sobrelinha do link*/
+  #sobrelinha_link{
+    text-decoration: none;
+  }
+
+
+  /*divisao do rodape*/
+  #space_card{
+    height: 100px;
+  }
+
+ /*estilo do x de fechar janela de busca */
+ .close-button{
+	background-color: transparent;	
+	padding: 0;
+	margin: 10px;
+	color: dimgrey;
+	font-weight: bold;
+ }
+
+ </style>
+
+    </head>
+    <body>
+<script type="text/javascript" src="cordova.js"></script>
+
+<script>
+///////////////////////login com enter/////////
+var input = document.getElementById("senha_user");
+input.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("logar_user").click();
+    }
+});
+
+</script>	
+
+<!------------------------------------------------------------------home do app------------------------------------------------------------->
+<main id="home_app" class="uk-animation-scale-down">
+  <a class="uk-button uk-button-default" href="#modal-full" id="botao2" uk-toggle></a>
+    <br />
+      <div id="modal-full" class="uk-modal-full" uk-modal>
+        <div class="uk-modal-dialog">
+          <button class="uk-modal-close-full uk-close-large close-button" type="button" uk-close></button>
+            <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
+              <div class="uk-padding-large">
+             	  <div id="titulo" class="titulo"></div>
+            	  <div id="img_fundo" class="img_instrumento"></div>
+                <div id="descricao" class="descricao"></div>
+                <p id="manual"></p>
+                <p id="pdf"class="pdf"></p>
+                <button type="button" onclick="pdfopen()" class="button_pdf">Abrir Manual &nbsp;<i class="fa fa-file-pdf-o" aria-hidden="true"></i></button>
+              </div>
+            </div>
+        </div>
+      </div>
+<!--------------------------------------------------------------cabeçalho do home---------------------------------------------->
+  <center>
+    <h1 style="color: grey;">Plistone</h1>
+  </center>
+   <a href="#modal-center" uk-toggle>
+      <h5 class="titulo">
+        <i class="fa fa-search button_search2"> Buscar instrumento</i>
+      </h5>
+    </a>
+   <div id="modal-center" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+      <button class="uk-modal-close-default" type="button" uk-close></button>
+  	    <p id="space"></p>
+       	  <div id="alerta"></div>
+       	    <h5 id="title_facabusca">Faça a busca do instrumento</h5>
+            <form>
+              <center>
+              </center>
+              <input class="uk-input" type="text" placeholder="Modelo do Instrumento" id="nome_i">
+	               <select class="uk-select espaco" id="select_option"></select>
+            	      <select class="uk-select space" id="variavel_p">
+            	      	 <option value="">Variável</option>
+            	         <option value="vazao">Vazão</option>
+            	      	 <option value="temperatura">Temperatura</option>
+            	      	 <option value="pressao">Pressão</option>
+            	         <option value="nivel">Nível</option>
+            	      	 <option value="CONTROLE">Controle</option>
+            	      	 <option value="Densidade">Densidade</option>
+            	      	 <option value="posicao">Posição</option>
+            	      </select>
+	              <center>
+	       	       <button type="button" class="uk-button uk-button-default space" id="space_button" onclick="busca_instrumento();">Buscar</button>
+	             </center>
+		        </form>
+      </div>
+    </div>
+<!-------------------------------------------------------------buscas salvas teporariamente------------------------------------------->
+ <div>
+  <hr>
+   <div class="uk-child-width-1-2@m" uk-grid>
+    <div>
+      <div class="uk-card uk-card-default">
+        <div class="uk-card-body">
+             <h3 class="uk-card-title" id="title_color">Dicas de uso  <i class="fa fa-cogs" aria-hidden="true"></i></h3>
+             <p>Para que possamos fazer  a busca do instrumento devemos preencher o campo nome,marca e variável de processo, não existe a necessidade de digitar tudo em maiusculo ou minusculo, pois o sistema reconhece da mesma forma.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="uk-card uk-card-default">
+        <div class="uk-card-body">
+              <h3 class="uk-card-title" id="title_color">Cálculo <i class="fa fa-superscript" aria-hidden="true"></i></h3>
+              <p id="text_conver">Conversão de unidade, no menu inferior a direita você encontrará um ícone igual a este <i class="fa fa-superscript" aria-hidden="true"></i>, nesta parte você entrará na página de conversores de unidade, seja para pressão,vazão ou temperatura. Nós pensamos que o técnico pode precisar de uma referência rápida no campo, então nós construímos uma parte exclusivamente para conversão de unidade.</p>
+        </div>
+     </div>
+    </div>
+   </div>
+  </div>
+</main>
+
+<!---------------------------------------------------------------------calculo inciio ------------------------------------------------------>
+<main id="calculo" style="display: none;">
+  <h1 class="titulo_calculo uk-animation-fade">Coversor de unidade</h1>
+    <center>
+      <a href="#temperatura" uk-toggle id="sobrelinha_link">
+        <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-animation-scale-down">
+            <h3 class="uk-card-title">Temperatura</h3>
+            <i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i>
+        </div>
+      </a>
+    <br>
+      <a href="#pressao" uk-toggle id="sobrelinha_link">
+        <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-animation-scale-down">
+            <h3 class="uk-card-title">Pressão</h3>
+            <i class="fa fa-tachometer" aria-hidden="true"></i>
+        </div>
+     </a>
+    <br>
+     <a href="#vazao_volumetrica" uk-toggle id="sobrelinha_link">
+        <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-animation-scale-down">
+            <h3 class="uk-card-title">Vazão Volumétrica</h3>
+            <i class="fa fa-random" aria-hidden="true"></i>
+        </div>
+     </a>
+    <br>
+     <a href="#vazao_massica" uk-toggle id="sobrelinha_link">
+        <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-animation-scale-down">
+            <h3 class="uk-card-title">Vazão mássica</h3>
+            <i class="fa fa-random" aria-hidden="true"></i>
+        </div>
+     </a>
+  </center>
+<!--------------------------------------------------------select conversor de temperatura----------------------------------------------->
+  <div id="temperatura" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+      <button class="uk-modal-close-default" type="button" uk-close></button>
+        <center>
+          <div id="resultado_calculo" class="space_input"></div>
+           <input type="number" class="uk-input" placeholder="Digite o valor para conveter" id="entrada">
+           <select class="uk-select space_input" id="temperatura1">
+              <option>Selecione a temperatura</option>
+              <option value='c'>Celsius</option>
+              <option value='k'>kelvin</option>
+              <option value='f'>Fahrenheit</option>
+              <option value='r'>Rankine</option>
+           </select>para
+          <i class="fa fa-long-arrow-down space_input" aria-hidden="true"></i>
+           <select class="uk-select space_input" id="temperatura2">
+              <option>Selecione a temperatura</option>
+              <option value='c'>Celsius</option>
+              <option value='k'>kelvin</option>
+              <option value='f'>Fahrenheit</option>
+              <option value='r'>Rankine</option>
+           </select>
+           <button class="uk-button uk-button-default space_input" onclick="calcular_temperatura()">Cálcular</button>
+        </center>
+    </div>
+  </div>
+
+<!-------------------------------------------------------select de conversão de pressão-------------------------------------------------------->
+  <div id="pressao" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+       <button class="uk-modal-close-default" type="button" uk-close></button>
+        <center>
+          <div id="resultado_pressao"></div>
+           <input type="number" class="uk-input" placeholder="Digite o valor para conveter" id="entrada_pressao">
+           <select class="uk-select space_input" id="pressao1">
+              <option>Selecione a pressão</option>
+              <option value="pa">Pa</option>
+              <option value="kpa">Kpa</option>
+              <option value="mca">mca (4 °C)</option>
+              <option value="mmca">mmca (4 °C)</option>
+              <option value="inca">Inca (4 °C)</option>
+              <option value="bar">Bar</option>
+              <option value="mmhg">mmHg (0 °C)</option>
+              <option value="inhg">InHg (0 °C)</option>
+              <option value="atm">Atm</option>
+              <option value="psi">psi</option>
+              <option value="kgf">kgf/cm^2</option>
+           </select>para
+          <i class="fa fa-long-arrow-down space_input" aria-hidden="true"></i>
+           <select class="uk-select space_input" id="pressao2">
+              <option>Selecione a pressão</option>
+              <option value="pa">Pa</option>
+              <option value="kpa">Kpa</option>
+              <option value="mca">mca (4 °C)</option>
+              <option value="mmca">mmca (4 °C)</option>
+              <option value="inca">Inca (4 °C)</option>
+              <option value="bar">Bar</option>
+              <option value="mmhg">mmHg (0 °C)</option>
+              <option value="inhg">InHg (0 °C)</option>
+              <option value="atm">Atm</option>
+              <option value="psi">psi</option>
+              <option value="kgf">kgf/cm^2</option>
+           </select>
+           <button class="uk-button uk-button-default space_input" type="button" onclick="calcula_pressao()">Cálcular</button>
+         <div id="resultado_pressao" class="space_input"></div>
+        </center>
+    </div>
+  </div>
+<!-----------------------------------select de vazao valumetriaca------------------------------>
+  <div id="vazao_volumetrica" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+      <button class="uk-modal-close-default" type="button" uk-close></button>
+        <center>
+          <div id="resultado_vazao_v" class="space_input"></div>
+           <input type="number" class="uk-input" placeholder="Digite o valor para conveter" id="entrada_vazao_v">
+           <select class="uk-select space_input" id="vazao_v1">
+              <option>Selecione uma unidade</option>
+              <option value='mh'>m^3/h</option>
+              <option value='mm'>m^3/min</option>
+              <option value='ms'>m^3/s</option>
+              <option value='gp'>GPM (Galão/min)</option>
+              <option value='bp'>BPD (Barril/dia)</option>
+              <option value='cfh'>CFH (pé^3/h)</option>
+              <option value='cfm'>CFM (pé^3/min)</option>
+           </select>para
+          <i class="fa fa-long-arrow-down space_input" aria-hidden="true"></i>
+           <select class="uk-select space_input space_input" id="vazao_v2">
+              <option>Selecione uma unidade</option>
+              <option value='mh'>m^3/h</option>
+              <option value='mm'>m^3/min</option>
+              <option value='ms'>m^3/s</option>
+              <option value='gp'>GPM (Galão/min)</option>
+              <option value='bp'>BPD (Barril/dia)</option>
+              <option value='cfh'>CFH (pé^3/h)</option>
+              <option value='cfm'>CFM (pé^3/min)</option>
+           </select>
+           <button class="uk-button uk-button-default space_input" onclick="calcula_vazao_volumetrica();">Cálcular</button>
+        </center>
+    </div>
+  </div>
+<!-------------------------------select vazao massica--------------------------------->
+  <div id="vazao_massica" class="uk-flex-top" uk-modal>
+     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <center>
+           <div id="resultado_vazao_massica" class="space_input"></div>
+           <input type="number" class="uk-input" placeholder="Digite o valor para conveter" id="entrada_vazao_ma">
+           <select class="uk-select space_input" id="vazao_m1">
+              <option>Selecione uma unidade</option>
+              <option value='tdia'>t/Dia</option>
+              <option value='thora'>t/h</option>
+              <option value='khora'>kg/h</option>
+              <option value='kseg'>kg/s</option>
+              <option value='lhora'>lb/h</option>
+              <option value='lmin'>lb/min</option>
+              <option value='lseg'>lb/s</option>
+           </select>para
+          <i class="fa fa-long-arrow-down space_input" aria-hidden="true"></i>
+           <select class="uk-select space_input" id="vazao_m2">
+             <option>Selecione uma unidade</option>
+             <option value='tdia'>t/Dia</option>
+             <option value='thora'>t/h</option>
+             <option value='khora'>kg/h</option>
+             <option value='kseg'>kg/s</option>
+             <option value='lhora'>lb/h</option>
+             <option value='lmin'>lb/min</option>
+             <option value='lseg'>lb/s</option>
+           </select>
+           <button class="uk-button uk-button-default space_input" onclick="calcula_vazao_massica()">Cálcular</button>
+        </center>
+      </div>
+    </div>
+  <div id="space_card"></div>
+</main>
+
+<!---------------------------------------------------------------------------rodape---------------------------------------------------------->
+<div class="rodape">
+	<a  class="fa fa-home inicio" aria-hidden="true" onclick="paginaHome();"></a>
+	<a  class="fa fa-superscript calculo_icone" aria-hidden="true" onclick="paginaCalculo();"></a>
+</div>
+
+  <script>
+    function paginaCalculo(){
+       document.getElementById('calculo').style.display = '';
+        document.getElementById('home_app').style.display = 'none';
+    }
+    function paginaHome(){
+       document.getElementById('calculo').style.display = 'none';
+       document.getElementById('home_app').style.display = '';
+    }
+  </script>
+
+    </body>
+</html>

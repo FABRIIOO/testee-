@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <link rel="stylesheet" href="estilo.css" type="text/css"/> 
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
+        <script src="funcionalidade.js"></script>
+
+    </head>
+    <body>
+<script type="text/javascript" src="cordova.js"></script>
+
+
+<!---------------------------------------inicio da tela de login--------------------->
+<div class="forme_login">
+<center>
+  <h1 class='title_login'>Plistone</h1> 
+   <form>
+   	<p>Autenticação de Usuário</p>
+     <div class="uk-margin">
+         <div class="uk-inline">
+             <span class="uk-form-icon" uk-icon="icon: user"></span>
+             <input class="uk-input" type="text" id="user">
+         </div>
+     </div>
+     <div class="uk-margin">
+         <div class="uk-inline">
+             <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+             <input class="uk-input" type="text" id="senha_user">
+         </div>
+     </div>
+     <button type="button" class="uk-button uk-button-default" onclick="logar();" id="logar_user">Entrar</button>
+  </form>
+</center>
+</div>	
+
+
+
+
+
+    </body>
+</html>

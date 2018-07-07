@@ -1,0 +1,161 @@
+
+/*estilo titulo do app*/
+.titulo{
+	text-align: center;
+	margin-top: 4px;
+	color: gray;
+	margin-left: 10px;
+	
+}
+
+/*estilo borda botao menu*/
+#botao{
+
+	margin-left: 10px;
+    border: 2px solid transparent;
+}
+
+.button_search2{
+ font-size: 25px;
+ margin-left: -10px;	
+ color: black;
+ opacity: 0.7;
+}
+
+#select_option{
+	margin-bottom: 10px;
+}
+#nome{
+	margin-bottom: 10px;
+}
+#space_button{
+	margin-top: 10px;
+}
+
+/*titulo plistone login*/
+.title_login{
+   	color: grey; 
+   	margin-top: 10px;
+}
+        	
+/*estilo do forme login*/
+.forme_login{
+	margin-top: 90px;
+}
+
+/*rodape do login*/
+.rodape_login{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+   	text-align: center;
+        	
+}
+
+/*-----------------home----------------------*/
+/*margin do x para feichar o campo de resultados*/
+.uk-icon{
+	margin-top: 10px;
+}
+
+/*imagem do instrumento com busca */
+.img_instrumento>img{
+	box-shadow: 2px 2px 2px silver;
+}
+/*estilo do tuitulo do instrumento*/
+.titulo>h2{
+	background-color: #bab6b6;
+	opacity: 0.8;
+	border-radius: 9px;
+	padding: 20px;
+	margin-top: 22px;
+	color: white;
+}
+
+/*estilo de descricao*/
+.descricao>p{
+ 	margin-top: 10px;
+	color: white;
+	background-color: #bab6b6;
+	border-radius: 9px;
+	padding: 10px;
+}
+
+/*botao para abrir pdf*/
+.button_pdf{
+	height: 60px;
+	width: 100%;
+	background-color: #e85c5c;
+	color: white;
+	font-size: 20px;
+	border: 2px solid #e85c5c;
+	border-radius: 5px;
+}
+#botao2{
+	display: none;
+}
+
+/*rodape do app*/
+.rodape{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 50px;
+	background-color: grey;
+	text-align: center;
+}
+
+/*icone de home*/
+.inicio{
+	margin-right: 120px;
+	font-size: 30px;
+	color: white;
+	margin-top: 10px;			
+	text-decoration: none;
+}
+.inicio:hover{
+	text-decoration: none;
+	color: silver;
+}
+
+/*icone do calculo*/
+.calculo_icone{
+	font-size: 30px;
+	color: white;
+	text-decoration: none;
+}
+.calculo_icone:hover{
+	color: silver;
+	text-decoration: none;
+}
+
+/*frase de buscas salvas temporariamente*/
+.title_buscas{
+	color: grey;
+	text-align: center;
+	margin-top: -5px;
+}
+
+/*display none to pdf*/
+.pdf{
+	display: none;
+}
+			
+/*close pesquisa*/
+.uk-modal-close-full{
+	background-color: transparent;
+	color: red;
+	margin: 5px;
+}
+
+
+
+/*cor titulo de incio dicas e calculo*/
+#title_color{
+		color: grey;
+}
+/*texto de conversão de unidade*/
+#text_conver{
+	margin-bottom: 100px;	
+}
+
